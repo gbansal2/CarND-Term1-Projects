@@ -46,7 +46,7 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the training data is divided among different classes
 
-![alt text][image1]
+![image1]
 
 Next, showing some randomly selected images:
 
