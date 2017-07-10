@@ -49,6 +49,7 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ![Histogram of n_classes][image1]
 
 Next, showing some randomly selected images:
+
 ![image2]
 
 ###Design and Test a Model Architecture
