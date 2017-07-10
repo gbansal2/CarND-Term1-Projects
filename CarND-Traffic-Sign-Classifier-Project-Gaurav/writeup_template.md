@@ -14,7 +14,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
+[image1]: ./hist_nclasses.png "Histogram for n_classes"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
@@ -46,7 +46,7 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the training data is divided among different classes
 
-![alt text][image1]
+![Histogram of n_classes][image1]
 
 Next, showing some randomly selected images:
 
