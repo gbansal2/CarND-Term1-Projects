@@ -17,11 +17,9 @@ The goals / steps of this project are the following:
 [image1]: ./hist_nclasses.png "Histogram for n_classes"
 [image2]: ./sample_images.png "Sample images"
 [image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image4]: ./writeup_images/rot_imgt.jpg
+[image5]: ./writeup_images/pers_imgt.jpg
+[image6]: ./writeup_images/trans_imgt.jpg
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -44,7 +42,7 @@ signs data set:
 
 ####2. Exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the training data is divided among different classes
+Here is an exploratory visualization of the data set. It is a bar chart showing how the training data is divided among different classes. Note that some classes are much less represented than other classes. 
 
 ![Histogram of n_classes][image1]
 
@@ -56,19 +54,21 @@ Next, showing some randomly selected images:
 
 ####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+Preprocessing of training data:
+I applied the following pre-processing steps:
+a. Converted the image to grayscale - this helps extract the most useful features of the image.
+c. Centered the images around mean intensity values, and scaled them by standard deviation of the intensity values - this helps to make the min-max range of intensity values of different images comparable so that all the images are similarly weighted.
 
-Here is an example of a traffic sign image before and after grayscaling.
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
+Here's an example of an image before and after preprocessing:
+![image3]
 
 To add more data to the the data set, I used the following techniques because ... 
 
-Here is an example of an original image and an augmented image:
+Here is an example of an original image and an augmented images:
 
-![alt text][image3]
+![image4]
+![image5]
+![image6]
 
 The difference between the original data set and the augmented data set is the following ... 
 
