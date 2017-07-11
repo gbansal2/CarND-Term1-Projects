@@ -52,52 +52,64 @@ Next, showing some randomly selected images:
 
 ###Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
-
-Preprocessing of training data:
+####1. Preprocessing of training data:
 
 I applied the following pre-processing steps:
 
 a. Converted the image to grayscale - this helps extract the most useful features of the image.
 
-c. Centered the images around mean intensity values, and scaled them by standard deviation of the intensity values - this helps to make the min-max range of intensity values of different images comparable so that all the images are similarly weighted.
+b. Centered the images around mean intensity values, and scaled them by standard deviation of the intensity values - this helps to make the min-max range of intensity values of different images comparable so that all the images are similarly weighted.
 
 Here's an example of an image before and after preprocessing:
 
 ![image3]
 
-To add more data to the the data set, I used the following techniques because ... 
+To add more data to the the data set, I used the following geometric transformation on images. All of these were done using OpenCV functions.
 
-Here is an example of an original image and an augmented images:
+a. Rotation by a random angle between -15 and 15 degrees. 
+
+b. Perspective transformation.
+
+c. Translation.
+
+Here is an example of an original image and transformed image for the above mentioned transformations.
 
 ![image4]
 ![image5]
 ![image6]
 
-The difference between the original data set and the augmented data set is the following ... 
+For each transformation, the training data set is shuffled and then 20,000 transformed images are generated.  This process is repeated for the second and third transformations. The new data set contains 94799 images. 
 
-
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+####2. Model architecture
 
 My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 Grayscale image   							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x24 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x24 				|
+| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x48    									|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x48 				|
+| Flatten    | outputs 1200 |
+| Fully connected		| outputs 240        									|
+| RELU					|												|
+| Fully connected		| outputs 168        									|
+| RELU					|												|
+| Fully connected		| outputs 43 (= n_classes)      									|
+
  
+####3. Model training
 
+I used the following methods and parameters for training the model:
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+Learning rate = 0.0008
 
-To train the model, I used an ....
+Batch size = 128, Number of Epochs = 20. The Epoch loop is terminated early if the desired accuracy is met.
+
+Adam optimizer is used to train the model.
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
