@@ -137,15 +137,19 @@ The model predicted the following:
 For image sample 7707, predicted sign is  Testing Accuracy = 1.000
 .. predicted sign is ...
 ['4', 'Speed limit (70km/h)']
+
 For image sample 10045, predicted sign is  Testing Accuracy = 0.000
 .. predicted sign is ...
 ['5', 'Speed limit (80km/h)']
+
 For image sample 9642, predicted sign is  Testing Accuracy = 1.000
 .. predicted sign is ...
 ['14', 'Stop']
+
 For image sample 6837, predicted sign is  Testing Accuracy = 1.000
 .. predicted sign is ...
 ['1', 'Speed limit (30km/h)']
+
 For image sample 11466, predicted sign is  Testing Accuracy = 1.000
 .. predicted sign is ...
 ['12', 'Priority road']
@@ -158,11 +162,15 @@ Below are the softmax probabilities that the model outputs for the above 5 testi
 
 TopKV2(values=array([[  1.00000000e+00,   8.75768902e-10,   8.27495851e-18,
           3.57787862e-20,   7.88174028e-22]], dtype=float32), indices=array([[4, 0, 1, 8, 7]], dtype=int32))
+          
 TopKV2(values=array([[ 0.56742024,  0.14815648,  0.087469  ,  0.07023293,  0.04088632]], dtype=float32), indices=array([[ 5, 40,  1,  2,  8]], dtype=int32))
+
 TopKV2(values=array([[  1.00000000e+00,   3.53753881e-23,   1.39664742e-25,
           2.58132872e-28,   6.37091005e-29]], dtype=float32), indices=array([[14, 17,  4,  5, 13]], dtype=int32))
+          
 TopKV2(values=array([[  1.00000000e+00,   1.93647053e-20,   1.88926146e-20,
           3.09336879e-23,   9.83334840e-27]], dtype=float32), indices=array([[1, 5, 2, 0, 6]], dtype=int32))
+          
 TopKV2(values=array([[  1.00000000e+00,   5.43675660e-10,   9.60820312e-11,
           4.72825668e-11,   1.19804253e-11]], dtype=float32), indices=array([[12,  1, 17, 14, 15]], dtype=int32))
 
