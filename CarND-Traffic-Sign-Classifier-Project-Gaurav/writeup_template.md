@@ -20,6 +20,7 @@ The goals / steps of this project are the following:
 [image4]:  ./writeup_images/rot_imgt.png
 [image5]: ./writeup_images/pers_imgt.png
 [image6]: ./writeup_images/trans_imgt.png
+[image7]: ./testing_images.png
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -105,76 +106,66 @@ My final model consisted of the following layers:
 
 I used the following methods and parameters for training the model:
 
-Learning rate = 0.0008
+Learning rate = 0.00075
 
 Batch size = 128, Number of Epochs = 20. The Epoch loop is terminated early if the desired accuracy is met.
 
 Adam optimizer is used to train the model.
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+####4. Training approach
+
+I started from the LeNet architecture, this gave an accuracy of 0.87.
+
+I performed an iterative process where I started by increasing the training set size by using augmented images described earlier. Then, I increased the number of units in the network and also tuned the learning rate and number of epochs until I could not further increase the accuracy. To increase the units, I made the two convolutional layers deeper, and also added units to the fully connected layers. 
+
+I repeated this process for multiple steps, each time increasing the number of training set images.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
-
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
-
-###Test a Model on New Images
-
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
-
-Here are five German traffic signs that I found on the web:
-
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
-
-The first image might be difficult to classify because ...
-
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+* training set accuracy of 0.985
+* validation set accuracy of 0.932
+* test set accuracy of 0.911
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+###Testing the Model on New Images
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+Here are five German traffic signs that I randomly selected from the testing data set.
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+![image7]
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+The model predicted the following:
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+For image sample 7707, predicted sign is  Testing Accuracy = 1.000
+.. predicted sign is ...
+['4', 'Speed limit (70km/h)']
+For image sample 10045, predicted sign is  Testing Accuracy = 0.000
+.. predicted sign is ...
+['5', 'Speed limit (80km/h)']
+For image sample 9642, predicted sign is  Testing Accuracy = 1.000
+.. predicted sign is ...
+['14', 'Stop']
+For image sample 6837, predicted sign is  Testing Accuracy = 1.000
+.. predicted sign is ...
+['1', 'Speed limit (30km/h)']
+For image sample 11466, predicted sign is  Testing Accuracy = 1.000
+.. predicted sign is ...
+['12', 'Priority road']
+
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+
+####3. Softmax probabilities
+
+Below are the softmax probabilities that the model outputs for the above 5 testing images. The model is extremely confident about images 1,3,4,5. For image 2, which the model incorrectly predicts, it is not very confident.
+
+TopKV2(values=array([[  1.00000000e+00,   8.75768902e-10,   8.27495851e-18,
+          3.57787862e-20,   7.88174028e-22]], dtype=float32), indices=array([[4, 0, 1, 8, 7]], dtype=int32))
+TopKV2(values=array([[ 0.56742024,  0.14815648,  0.087469  ,  0.07023293,  0.04088632]], dtype=float32), indices=array([[ 5, 40,  1,  2,  8]], dtype=int32))
+TopKV2(values=array([[  1.00000000e+00,   3.53753881e-23,   1.39664742e-25,
+          2.58132872e-28,   6.37091005e-29]], dtype=float32), indices=array([[14, 17,  4,  5, 13]], dtype=int32))
+TopKV2(values=array([[  1.00000000e+00,   1.93647053e-20,   1.88926146e-20,
+          3.09336879e-23,   9.83334840e-27]], dtype=float32), indices=array([[1, 5, 2, 0, 6]], dtype=int32))
+TopKV2(values=array([[  1.00000000e+00,   5.43675660e-10,   9.60820312e-11,
+          4.72825668e-11,   1.19804253e-11]], dtype=float32), indices=array([[12,  1, 17, 14, 15]], dtype=int32))
 
 
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
