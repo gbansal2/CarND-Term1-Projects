@@ -38,7 +38,7 @@ signs data set:
 * The size of training set is 34799
 * The size of the validation set is 4410
 * The size of test set is 12630
-* The shape of a traffic sign image is 32x32
+* The shape of a traffic sign image is 32x32x3
 * The number of unique classes/labels in the data set is 43
 
 ####2. Exploratory visualization of the dataset.
@@ -155,6 +155,12 @@ For image sample 11466, predicted sign is  Testing Accuracy = 1.000
 ['12', 'Priority road']
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+
+Discussion on difficulty in predicting an image:
+The model fails to predict the second image correctly. Most likely this is because in the image, the speed limit sign is rotated by some angle. Thus although, the model correctly predicts it is a speed-limit sign, it incorrectly predicts it to be a an '80 km/h' sign, instead of 120 km/h sign. 
+Other properties of image which can make it hard to predict are:
+1. Bluriness
+2. Not enough lighting or too much lighting (i.e. not enough contrast)
 
 ####3. Softmax probabilities
 
